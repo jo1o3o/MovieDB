@@ -6,9 +6,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class MovieDatabaseApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(MovieDatabaseApplication.class, args);
-		System.out.print("Movie Database application started");
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(MovieDatabaseApplication.class, args);
+        System.out.print("Movie Database application started");
+    }
 
 }
