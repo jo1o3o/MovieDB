@@ -1,8 +1,10 @@
+import StarIcon from "./star.svg";
+
 interface Props {
   movie: Movie;
 }
 
-interface Movie {
+export interface Movie {
   title: string;
   year: number;
   rating: number;
@@ -13,7 +15,7 @@ interface Movie {
 const imageUrl = "http://localhost:8081/images/";
 const jpgExtension = ".jpg";
 
-const MovieCard = ({ movie }: Props) => {
+function MovieCard({ movie }: Props) {
   return (
     <div className="movie" key={movie.title}>
       <div>
@@ -34,9 +36,11 @@ const MovieCard = ({ movie }: Props) => {
       <div>
         <span>{movie.type}</span>
         <h3>{movie.title}</h3>
+        <img src={StarIcon} />
+        <span> {movie.rating}</span>
       </div>
     </div>
   );
-};
+}
 
 export default MovieCard;

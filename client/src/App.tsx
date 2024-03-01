@@ -1,13 +1,14 @@
 import "./App.css";
 import { useEffect, useState } from "react";
-import MovieCard from "./MovieCard";
 import SearchIcon from "./search.svg";
+import MovieCard from "./MovieCard";
 
 // url to fetch movies
 const API_URL = "http://localhost:8081/v1/movies";
 
 function App() {
   const [movies, setMovies] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const getMovies = async () => {
     const response = await fetch(`${API_URL}`);
@@ -24,11 +25,15 @@ function App() {
       <h1>MovieDB</h1>
 
       <div className="search">
-        <input placeholder="Search for movies" />
+        <input
+          placeholder="Search for movies"
+          onChange={(e) => setSearchTerm(e.target.value)}
+          value={searchTerm}
+        />
         <img
           src={SearchIcon}
           alt="search"
-          onClick={() => console.log("Search box not yet implemented")}
+          onClick={() => console.log(searchTerm)}
         />
       </div>
 
