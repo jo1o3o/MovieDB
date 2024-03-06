@@ -13,7 +13,6 @@ export interface Movie {
 }
 
 const imageUrl = "http://localhost:8081/images/";
-const jpgExtension = ".jpg";
 
 function MovieCard({ movie }: Props) {
   return (
@@ -26,7 +25,7 @@ function MovieCard({ movie }: Props) {
         <img
           src={
             movie.imageName !== "N/A"
-              ? imageUrl + movie.imageName + jpgExtension
+              ? imageUrl + movie.imageName
               : "https://via.placeholder.com/400"
           }
           alt={movie.title}
