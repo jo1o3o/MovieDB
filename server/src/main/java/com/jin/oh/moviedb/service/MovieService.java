@@ -24,4 +24,8 @@ public class MovieService {
         return movies;
     }
 
+    public List<Movie> getMoviesByKeyword(String keyword) {
+        return movies.stream().filter(movie -> movie.getTitle().toLowerCase().contains(keyword.toLowerCase())).toList();
+    }
+
 }

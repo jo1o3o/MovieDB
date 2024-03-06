@@ -3,10 +3,7 @@ package com.jin.oh.moviedb.controller;
 import com.jin.oh.moviedb.model.Movie;
 import com.jin.oh.moviedb.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,7 +23,10 @@ public class MovieController {
     }
 
     @GetMapping
-    public List<Movie> getMovies() {
+    public List<Movie> getMovies(@RequestParam(required = false) String keyword) {
+        if (keyword != null) {
+            return movieService.getMoviesByKeyword(keyword);
+        }
         return movieService.getMovies();
     }
 
