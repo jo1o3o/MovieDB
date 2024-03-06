@@ -1,24 +1,24 @@
 import "./App.css";
 import { useEffect, useState } from "react";
 import SearchIcon from "./search.svg";
-import MovieCard from "./MovieCard";
+import MovieCard, { Movie } from "./MovieCard";
 
 // url to fetch movies
 const API_URL = "http://localhost:8081/v1/movies";
 
 function App() {
-  const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState<Movie[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
 
-  const getMovies = async () => {
-    const response = await fetch(`${API_URL}`);
-    const movies = await response.json();
-    setMovies(movies);
-  };
-
   useEffect(() => {
-    getMovies();
-  });
+    getMovies("");
+  }, []);
+
+  const getMovies = async (keyword: string) => {
+    const response = await fetch(`${API_URL}?keyword=${keyword}`);
+    const data = await response.json();
+    setMovies(data);
+  };
 
   return (
     <div className="app">
@@ -27,13 +27,13 @@ function App() {
       <div className="search">
         <input
           placeholder="Search for movies"
-          onChange={(e) => setSearchTerm(e.target.value)}
           value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
         />
         <img
           src={SearchIcon}
           alt="search"
-          onClick={() => console.log(searchTerm)}
+          onClick={() => getMovies(searchTerm)}
         />
       </div>
 
